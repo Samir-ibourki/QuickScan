@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# 🛒 QuickScan - Mobile POS System
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+QuickScan is an innovative, fast, and cost-effective Point of Sale (POS) system that transforms any smartphone into a professional barcode scanner and receipt printer.
 
-## Get started
+![QuickScan Concept](https://img.shields.io/badge/Status-Active-brightgreen.svg)
 
-1. Install dependencies
+## 📖 The Story Behind QuickScan
 
+The idea was born out of a simple observation while waiting in a long checkout line at a local supermarket. Small business owners often rely on expensive, outdated, and clunky POS hardware. Yet, almost everyone carries a high-powered computer with an amazing camera right in their pocket—their smartphone.
+
+*What if we turned that smartphone into a lightning-fast POS system?*
+
+QuickScan bridges the gap between modern mobile technology and legacy hardware, providing an affordable and highly efficient solution for everyday businesses.
+
+## 🚀 Features
+
+- **📱 Instant Mobile Scanning**: Uses the smartphone's camera to instantly read barcodes (EAN-13, EAN-8, etc.) without the need for dedicated hardware.
+- **🛒 Smart Cart Management**: Real-time product lookup, quantity adjustment, and automatic total calculations.
+- **🖨️ Physical Receipt Printing**: Seamlessly connects to physical Windows thermal printers (like WD8260) over the local network to print professional ESC/POS formatted receipts instantly.
+- **⚡ Fast & Reliable**: Built with modern architectures including TanStack React Query for solid state management and caching.
+
+## 🛠️ Tech Stack
+
+### Frontend (Mobile App)
+- **Framework**: React Native (with Expo)
+- **Scanning Engine**: `expo-camera`
+- **State Management & Data Fetching**: TanStack React Query & Axios
+- **Styling**: Premium Dark Theme UI with native components and React Native Vector Icons.
+
+### Backend (Local Server)
+- **Environment**: Node.js & Express.js
+- **Printing Logic**: `node-thermal-printer` executing raw Windows printing (`copy /b`) to bypass driver limitations and send raw ESC/POS binary codes directly to the printer spooler.
+- **Data**: JSON Mock Database for fast local product lookups.
+
+## ⚙️ Getting Started
+
+### 1. Prerequisites
+- Node.js installed on your PC.
+- A physical thermal printer connected via USB to your Windows PC and **shared** on the network with the share name `POS80`.
+- Expo Go installed on your smartphone.
+
+### 2. Backend Setup
+1. Open a terminal and navigate to the `backend` folder:
    ```bash
-   npm install
+   cd backend
+   pnpm install
+   ```
+2. Start the local server:
+   ```bash
+   pnpm run dev
    ```
 
-2. Start the app
-
+### 3. Frontend Setup
+1. Find your PC's local IPv4 address (run `ipconfig` in CMD, e.g., `192.168.8.11`).
+2. Update the `SERVER_IP` constant in `frontend/api/config.js` with your IP address.
+3. Open a new terminal, navigate to the `frontend` folder, and start the Expo app:
    ```bash
-   npx expo start
+   cd frontend
+   pnpm install
+   pnpm expo start
    ```
+4. Scan the generated QR code using the Expo Go app on your phone.
 
-In the output, you'll find options to open the app in a
+## 🤝 Contribution
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Contributions are always welcome! Feel free to open an issue or submit a pull request if you have ideas on how to improve the code.
